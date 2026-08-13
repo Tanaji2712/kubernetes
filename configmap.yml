@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  namespace: workshop
+
+data:
+  APP_ENV: production
+  DB_HOST: mysql-service
+type: Opaque
+stringData:
+  # Replace these placeholders with your actual database credentials
+  DB_USERNAME: admin          
+  DB_PASSWORD: supersecretpassword 

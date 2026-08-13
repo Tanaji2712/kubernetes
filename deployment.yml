@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: workshop
+
+spec:
+  replicas: 3
+
+  selector:
+    matchLabels:
+      app: frontend
+
+  template:
+    metadata:
+      labels:
+        app: frontend
+
+    spec:
+      containers:
+      - name: frontend
+        image: nginx:01
+        ports:
+        - containerPort: 80
+        env: 
+        # 1. Fetching from ConfigMap
+        - name: APP_ENV
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: APP_ENV
+        # 2. Fetching from Secret
+        - name: DB_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: app-db-credentials
+              key: DB_USERNAME
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: app-db-credentials
+              key: DB_PASSWORD

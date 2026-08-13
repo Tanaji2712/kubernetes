@@ -1,0 +1,21 @@
+apiVersion: app/v1
+kind: StatefulSet
+metadata:
+  name: mysql
+  namespace: workshop
+spec:
+  servicename: mysql
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mysql
+
+  template:
+    metadata:
+     labels:
+      app: mysql
+
+    spec:
+      containers:
+      - name: mysql
+        image: mysql:8

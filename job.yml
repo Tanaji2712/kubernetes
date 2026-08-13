@@ -1,0 +1,19 @@
+apiVersion: batch/1
+kind: Job
+metadata:
+  name: job
+  namespace: workshop
+
+spec:
+  template:
+    spec:
+      containers:
+      - name: backup
+        image: busybox
+
+      command:
+      - sh
+      - c
+      - echo "backup started"
+
+      restartPolicy: Never

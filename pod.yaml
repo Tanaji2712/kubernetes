@@ -6,11 +6,7 @@ metadata:
     app: my-app
 spec:
   containers:
-    - name: my-container
-      image: nginx
+    - name: nginx
+      image: nginx:1.25
       ports:
-        - containerPort: 80 
-
-    - name: tomcat-container
-      image: tomcat
-      ports:  80
+        - containerPort: 80

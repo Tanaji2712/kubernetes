@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata: 
+  name: daily-backup
+  namespace: workshop
+
+spec:
+  schedule: "* 2 * * *"
+
+  jobtemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: backup
+            image: busybox
+
+            command:
+            - sh
+            - -c
+            - echo "backup completed"
+
+          containerPolicy: never
